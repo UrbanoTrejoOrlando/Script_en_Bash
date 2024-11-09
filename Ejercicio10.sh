@@ -3,7 +3,7 @@
 # Fecha  : 14-07-2023                          #
 # Correo : orlandourbanotrejo@gmail.com        #
 ################################################
-# Algoritmo que calcula el saldo de sus clientes para no generar intereses y dependiendo del año aplicar descuentos 
+# Algoritmo que calcula el saldo de sus clientes para no generar intereses y dependiendo del año aplicar descuentos
 
 # Datos de entrada
 echo "Numero de clientes: "
@@ -21,13 +21,22 @@ for ((i = 0; i < clientes; i++)); do
     read -r montoCompras
     echo "Saldo Actual: "
     read -r saldoActual
-	# Operaciones
-    pagoActual=$(bc <<< "$saldoActual * 0.12 + 200")
-    saldoMinimo=$(bc <<< "$saldoActual * 0.15")
-  	pagoInteres=$(bc <<< "$saldoActual * 0.85")
-	# Impresion de resultados
-    echo "Tu saldo actual $nombre es de $pagoActual pesos"
-    echo "Tu pago minimo $nombre es de $saldoMinimo pesos"
-    echo "El pago para no generar intereses $nombre es de $pagoInteres pesos"
+
+    # Calcular el saldo actualizado
+    saldoActual=$(bc <<< "scale=2; $saldoAnterior + $deposito - $montoCompras")
+
+    # Cálculos
+    pagoActual=$(bc <<< "scale=2; $saldoActual * 0.12 + 200")
+    saldoMinimo=$(bc <<< "scale=2; $saldoActual * 0.15")
+    pagoInteres=$(bc <<< "scale=2; $saldoActual * 0.85")
+
+    # Impresión de resultados
+    echo "-------------------------------"
+    echo "Cliente: $nombre"
+    echo "Saldo Actual: $saldoActual pesos"
+    echo "Pago Actual: $pagoActual pesos"
+    echo "Pago Mínimo: $saldoMinimo pesos"
+    echo "Pago para no generar intereses: $pagoInteres pesos"
+    echo "-------------------------------"
 done
 
