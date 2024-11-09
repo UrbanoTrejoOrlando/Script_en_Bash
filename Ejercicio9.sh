@@ -1,9 +1,9 @@
 ################################################
 # Autor  : Orlando Urbano Trejo @Lando         #
 # Fecha  : 14-07-2023                          #
-# Correo : orlandourbanotrejogmail.com         #
+# Correo : orlandourbanotrejo@gmail.com        #
 ################################################
-# Algoritmo para determinar el sueldo semanal de N trabajdores y aplicar descuentos dependiendo de las horas se aplicara un descuento
+# Algoritmo para determinar el sueldo semanal de N trabajadores y aplicar descuentos dependiendo de las horas trabajadas
 
 # Datos de entrada
 echo "Numero de trabajadores: "
@@ -11,25 +11,33 @@ read -r trabajadores
 
 for ((i = 0; i < trabajadores; i++)); do
     echo "Nombre del trabajador $((i + 1)):"
-    read -r nombres
+    read -r nombre
     echo "Horas Trabajadas: "
     read -r horasTrabajadas
     echo "Sueldo por hora: "
     read -r sueldoHora
-	salario=$(bc <<< "$horasTrabajadas * $sueldoHora")
-	# Condiciones
-    if ((salario >= 0 && salario <= 150)); then
-        nuevoSalario=$(bc <<< "$salario * 0.5")
-    elif ((salario > 150 && salario <= 300)); then
-        nuevoSalario=$(bc <<< "$salario * 0.7")
-    elif ((salario > 300 && salario <= 450)); then
-        nuevoSalario=$(bc <<< "$salario * 0.9")
+    
+    # Calcular salario base
+    salario=$(bc <<< "scale=2; $horasTrabajadas * $sueldoHora")
+
+    # Aplicar descuento dependiendo del salario
+    if (( $(bc <<< "$salario <= 150") )); then
+        descuento=$(bc <<< "scale=2; $salario * 0.5")
+    elif (( $(bc <<< "$salario > 150 && $salario <= 300") )); then
+        descuento=$(bc <<< "scale=2; $salario * 0.3")
+    elif (( $(bc <<< "$salario > 300 && $salario <= 450") )); then
+        descuento=$(bc <<< "scale=2; $salario * 0.1")
     else
-        nuevoSalario=0
+        descuento=0
     fi
-	# Impresion de resultados
-    total=$(bc <<< "$salario - $nuevoSalario")
-    echo "Trabajador: $nombres"
-    echo "Salario final: $total"
+
+    # Calcular el salario final
+    salarioFinal=$(bc <<< "scale=2; $salario - $descuento")
+    
+    # Impresion de resultados
+    echo "Trabajador: $nombre"
+    echo "Salario Base: $salario"
+    echo "Descuento: $descuento"
+    echo "Salario Final: $salarioFinal"
 done
 
