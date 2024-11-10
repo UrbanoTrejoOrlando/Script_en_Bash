@@ -4,13 +4,14 @@
 # Correo : urbanoorlando79@gmail.com           #
 ################################################
 
-# Ejercicio: Realiza un codigo que imprima los numeros de 5 en 5 hasta donde el usuario digite
+# Ejercicio: Imprimir los números de 5 en 5 hasta el número ingresado por el usuario
 
-read -p "Ingresa un numero: " Numero
+# Solicitar al usuario que ingrese un número
+read -p "Ingresa un número: " Numero
 
-for (( i=1; i<=Numero; i++ )); do
-    if (( i % 5 == 0 )); then
-        echo -n "$i, "
-    fi
+# Iniciar el ciclo desde 5 y aumentar de 5 en 5 hasta llegar o superar el número ingresado
+for (( i=5; i<=Numero; i+=5 )); do
+    echo -n "$i, "
 done
 echo
+
