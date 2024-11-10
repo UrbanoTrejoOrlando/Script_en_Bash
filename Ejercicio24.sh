@@ -3,13 +3,20 @@
 # Fecha  : 17-07-2023                          #
 # Correo : orlandourbanotrejo@gmail.com        #
 ################################################
-# Algoritmo que calcula la tercera parte de un numero
+# Algoritmo que calcula la mitad de la tercera parte del doble de un número.
 
-# Datos de entrada 
-read -p "Ingresa un numero: " numero
-# Operaciones
-resultado1=$(bc <<< "$numero * 2")
-resultado2=$(bc <<< "$resultado1 / 3")
-final=$(bc <<< "$resultado2 / 2")
-echo "La mitad de la tercera parte del doble de $numero es: $final"
+# Solicitar el número como entrada
+read -p "Ingresa un número: " numero
+
+# Calcular el doble del número
+doble=$(bc <<< "$numero * 2")
+
+# Calcular la tercera parte del doble
+tercera_parte=$(bc <<< "$doble / 3")
+
+# Calcular la mitad de la tercera parte
+mitad=$(bc <<< "$tercera_parte / 2")
+
+# Mostrar el resultado final
+echo "La mitad de la tercera parte del doble de $numero es: $mitad"
 
