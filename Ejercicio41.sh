@@ -4,24 +4,23 @@
 # Correo : urbanoorlando79@gmail.com           #
 ################################################
 
-# Ejercicio: Realiza un codigo que calcule la siguiente suma (1-2+3-4+5-6 hasta n) donde n sea ingresada por el usuario
+# Ejercicio: Calcular la suma de la secuencia (1-2+3-4+5-6 hasta n)
 
 echo "Ingresa un numero: " 
 read -r Numero
 
-Pares=0
-Impares=0
-Negativos=0
+Suma=0
 
+# Iterar sobre todos los números de 1 a n
 for (( i=1; i<=Numero; i++ )); do
     if (( i % 2 == 0 )); then
-        Negativos=$((i * -1))
-        Pares=$((Pares + Negativos))
+        # Si el número es par, restamos el valor
+        Suma=$((Suma - i))
     else
-        Impares=$((Impares + i))
+        # Si el número es impar, sumamos el valor
+        Suma=$((Suma + i))
     fi
 done
 
-Suma=$((Pares + Impares))
 echo "Suma: $Suma"
 
