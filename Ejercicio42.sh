@@ -4,10 +4,11 @@
 # Correo : urbanoorlando79@gmail.com           #
 ################################################
 
-# Ejercicio: Convertir de grados Celcius a Fahrenheit
+# Ejercicio: Convertir de grados Celsius a Fahrenheit
 
-echo "Grados a convertir: "
+echo "Ingresa los grados Celsius a convertir: "
 read -r Grados
-Conversion=$(bc <<< "scale=2; ($Grados * 1.8) + 32")
-echo "Conversion: $Conversion"
+# Conversion de Celsius a Fahrenheit
+Conversion=$(echo "scale=2; ($Grados * 1.8) + 32" | bc)
+echo "La conversión de $Grados°C a Fahrenheit es: $Conversion°F"
 
