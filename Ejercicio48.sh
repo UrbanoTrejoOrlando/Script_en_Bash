@@ -1,36 +1,62 @@
+#!/bin/bash
 ################################################
 # Autor  : Orlando Urbano Trejo (Lando)        #
-# Fecha  : 28-07-2023                          #  
+# Fecha  : 28-07-2023                          #
 # Correo : urbanoorlando79@gmail.com           #
 ################################################
 
-# Ejercicio: Una compania de refrescos comercializa tres productos: de cola, de naranja y de limon. Se desea realizar un programa que calcule las ventas realizadas de cada producto. Para ello, se leera la cantidad vendida (maximo 5000000) y el precio en euros de cada producto y se mostrara un informe de ventas como el que sigue: 
+# Ejercicio: Programa para calcular ventas de productos de una compañía de refrescos
 
+# Función para calcular el total de ventas por producto
+calcular_total() {
+    local ventas=$1
+    local precio=$2
+    echo $(bc <<< "$ventas * $precio")
+}
 
-echo "Ingresa la cantidad de ventas de cola: "
-read -r Ventas_Cola
-echo "Precio del producto: "
-read -r Precio_Cola
-Total_Cola=$(bc <<< "$Ventas_Cola * $Precio_Cola")
+# Función para obtener ventas y precio de un producto
+leer_datos_producto() {
+    local nombre=$1
+    local ventas precio
 
-echo "Ingresa la cantidad de ventas de naranja: "
-read -r Ventas_Naranja
-echo "Precio del producto: "
-read -r Precio_Naranja
-Total_Naranja=$(bc <<< "$Ventas_Naranja * $Precio_Naranja")
+    # Leer cantidad vendida
+    while true; do
+        read -p "Ingresa la cantidad de ventas de $nombre (máximo 5000000): " ventas
+        if [[ "$ventas" =~ ^[0-9]+$ ]] && [ "$ventas" -le 5000000 ]; then
+            break
+        else
+            echo "Por favor, ingresa un número válido hasta 5000000."
+        fi
+    done
 
-echo "Ingresa la cantidad de ventas de limón: "
-read -r Ventas_Limon
-echo "Precio del producto: "
-read -r Precio_Limon
-Total_Limon=$(bc <<< "$Ventas_Limon * $Precio_Limon")
+    # Leer precio del producto
+    while true; do
+        read -p "Precio del producto $nombre: " precio
+        if [[ "$precio" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
+            break
+        else
+            echo "Por favor, ingresa un precio válido."
+        fi
+    done
 
+    # Calcular el total y devolver los valores
+    echo "$ventas" "$precio" $(calcular_total "$ventas" "$precio")
+}
+
+# Obtener datos para cada producto
+read -r Ventas_Cola Precio_Cola Total_Cola <<< "$(leer_datos_producto 'cola')"
+read -r Ventas_Naranja Precio_Naranja Total_Naranja <<< "$(leer_datos_producto 'naranja')"
+read -r Ventas_Limon Precio_Limon Total_Limon <<< "$(leer_datos_producto 'limón')"
+
+# Calcular el total final
 Total_Final=$(bc <<< "$Total_Cola + $Total_Naranja + $Total_Limon")
 
-echo -e "Producto    Ventas   Precio   Total"
+# Mostrar el informe de ventas
+echo -e "\nProducto    Ventas    Precio   Total"
 echo -e "---------------------------------------"
-echo -e "Cola        $Ventas_Cola\t\t$Precio_Cola\t$Total_Cola"
-echo -e "Naranja     $Ventas_Naranja\t\t$Precio_Naranja\t$Total_Naranja"
-echo -e "Limon       $Ventas_Limon\t\t$Precio_Limon\t$Total_Limon"
+echo -e "Cola        $Ventas_Cola\t  $Precio_Cola\t$Total_Cola"
+echo -e "Naranja     $Ventas_Naranja\t  $Precio_Naranja\t$Total_Naranja"
+echo -e "Limón       $Ventas_Limon\t  $Precio_Limon\t$Total_Limon"
 echo -e "---------------------------------------"
-echo -e "TOTAL\t\t\t\t$Total_Final"
+echo -e "TOTAL\t\t\t\t $Total_Final"
+
