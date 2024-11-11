@@ -1,17 +1,27 @@
 ################################################
 # Autor  : Orlando Urbano Trejo (Lando)        #
 # Fecha  : 28-07-2023                          #
-# Correo : urbanoorlando79@gmail.com           #
+# Correo : urbanoorlando79@gmail.com            #
 ################################################
 
-# Ejercicio: Realiza un programa que lea una cadena por teclado y compruebe si es una letra mayuscula
+#!/bin/bash
 
+# Función para verificar si una letra es mayúscula
+verificar_mayuscula() {
+    # Usamos una expresión regular para verificar si el primer carácter es una letra mayúscula (A-Z)
+    if [[ "$1" =~ [A-Z] ]]; then
+        # Si la letra es mayúscula, se imprime este mensaje
+        echo "La letra $1 es mayúscula"
+    else
+        # Si la letra no es mayúscula, se imprime este mensaje
+        echo "La letra $1 es minúscula"
+    fi
+}
+
+# Solicitar al usuario que ingrese una letra
 echo "Ingresa una letra: "
-read -r Letra
+read -r Letra  # Leer la entrada del usuario y guardarla en la variable Letra
 
-if [[ "$Letra" == [A-Z] ]]; then
-    echo "La letra $Letra es mayuscula"
-else
-    echo "La letra $Letra es minuscula"
-fi
+# Llamar a la función para verificar la letra
+verificar_mayuscula "$Letra"  # Pasar la letra ingresada como argumento a la función
 
