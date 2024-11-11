@@ -1,15 +1,21 @@
+#!/bin/bash
+
 ################################################
 # Autor  : Orlando Urbano Trejo (Lando)        #
 # Fecha  : 28-07-2023                          #
 # Correo : urbanoorlando79@gmail.com           #
+# Descripción: 
+#   Este script muestra el resto de la cadena
+#   a partir de la primera aparición del 
+#   carácter especificado.
 ################################################
 
-# Ejercicio: Regresa el restante de la cadena a partir de la primera aparicion del caracter indicado 
+# Cadena base
+abecedario="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-Abecedario="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+# Solicitar el carácter de corte
+read -rp "Ingresa la letra donde quieres realizar el corte: " corte
 
-echo "Letra donde quieres realizar el corte: "
-read -r Corte
-echo "Nueva Cadena"
-echo "${Abecedario##*$Corte}"
+# Mostrar el resultado de la cadena cortada
+echo "Nueva Cadena: ${abecedario##*$corte}"
 
