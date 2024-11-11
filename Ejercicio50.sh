@@ -1,15 +1,18 @@
+#!/bin/bash
 ################################################
 # Autor  : Orlando Urbano Trejo (Lando)        #
 # Fecha  : 28-07-2023                          #
 # Correo : urbanoorlando79@gmail.com           #
 ################################################
 
-# Ejercicio: Escribir una palabra y ver cuanto mide la cadena
+# Ejercicio: Escribir una palabra y ver cuánto mide la cadena
 
-echo "Palabra: "
+echo "Ingresa una palabra: "
 read -r Palabra
-# Con el # obtenemos la longitud de la cadena
-Longitud=${#Palabra}
-echo "Longitud: $Longitud"
 
+# Calcular la longitud de la palabra
+Longitud=${#Palabra}
+
+# Mostrar la longitud
+echo "La longitud de la palabra '$Palabra' es: $Longitud"
 
