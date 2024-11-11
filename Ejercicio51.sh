@@ -1,18 +1,20 @@
 #!/bin/bash
+
 ################################################
 # Autor  : Orlando Urbano Trejo (Lando)        #
 # Fecha  : 28-07-2023                          #
 # Correo : urbanoorlando79@gmail.com           #
+# Descripción: 
+#   Script para convertir cualquier cadena 
+#   de texto ingresada a mayúsculas.
 ################################################
 
-# Ejercicio: Convertir a mayúsculas cualquier cadena de texto.
+# Solicitar al usuario una cadena de texto
+read -rp "Por favor, ingresa una cadena de texto: " texto
 
-echo "Ingresa una cadena de texto: "
-read -r Texto
+# Convertir el texto a mayúsculas
+texto_mayusculas=$(echo "$texto" | tr '[:lower:]' '[:upper:]')
 
-# Convertir el texto a mayúsculas usando el comando tr
-Mayuscula=$(echo "$Texto" | tr '[:lower:]' '[:upper:]')
-
-# Mostrar el texto convertido a mayúsculas
-echo "Texto en mayúsculas: $Mayuscula"
+# Mostrar el resultado
+echo "Texto en mayúsculas: $texto_mayusculas"
 
