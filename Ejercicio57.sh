@@ -1,21 +1,26 @@
+#!/bin/bash
+
 ################################################
 # Autor  : Orlando Urbano Trejo (Lando)        #
 # Fecha  : 28-07-2023                          #
 # Correo : urbanoorlando79@gmail.com           #
 ################################################
 
-# Ejercicio: Ingresa por teclado el nombre y el signo de cualquier persona e imprima el nombre solo si la persona es signo Aries, caso contrario imprimir "No es signo Aries"
+# Ejercicio: Solicitar el nombre y el signo zodiacal de una persona.
+# Imprimir el nombre solo si el signo es Aries; de lo contrario, imprimir "No eres signo Aries".
 
+# Solicitar nombre
 echo "Ingresa tu nombre: "
-read -r  Nombre
+read -r nombre
 
-echo "Ingresa tu signo: "
-read -r Signo
+# Solicitar signo zodiacal
+echo "Ingresa tu signo zodiacal: "
+read -r signo
 
-if [ "$Signo" = "Aries" ]; then
-    echo "Eres signo Aries, tu nombre es: $Nombre"
+# Comprobar si el signo es Aries
+if [ "$signo" = "Aries" ]; then
+    echo "Eres signo Aries, tu nombre es: $nombre"
 else
     echo "No eres signo Aries"
 fi
-
 
