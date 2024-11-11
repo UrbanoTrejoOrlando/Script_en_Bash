@@ -4,20 +4,23 @@
 # Correo : urbanoorlando79@gmail.com           #
 ################################################
 
-# Ejercicio: Sumar numeros pares desde n hasta m. 
+# Ejercicio: Sumar números pares desde un número n hasta un número m.
 
-read -p "Ingresa un numero para el inicio de la suma: " Num_Inicio
-read -p "Ingresa un numero para el limite de la suma: " Num_Final
-Suma=0
+# Solicitar al usuario que ingrese el número inicial y el número final para la suma
+read -p "Ingresa un número para el inicio de la suma: " Num_Inicio  # Límite inferior
+read -p "Ingresa un número para el límite de la suma: " Num_Final   # Límite superior
+Suma=0  # Inicializar la variable para almacenar la suma
 
+# Bucle para iterar desde el número inicial hasta el número final
 for (( i=Num_Inicio; i<=Num_Final; i++ ))
 do
+    # Verificar si el número es par
     if (( i % 2 == 0 ))
     then
-        Suma=$((Suma + i))
+        Suma=$((Suma + i))  # Sumar el número par a la variable Suma
     fi
 done
 
+# Mostrar el resultado de la suma
 echo "Suma: $Suma"
-
 
